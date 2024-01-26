@@ -1,4 +1,3 @@
-import './App.css'
 import Authentication from './components/Authentication';
 // import ProductForm from './utils/ProductForm'
 
