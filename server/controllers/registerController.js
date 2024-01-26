@@ -19,7 +19,7 @@ const handleNewUser = async (req, res) => {
     // Encrypt password
     const hashedPw = await bcrypt.hash(password, 10);
     // store the new user
-    const newUser = { username: user, password };
+    const newUser = { username: user, hashedPw };
     usersDB.setUsers([...usersDB.users, newUser]);
     await fsPromises.writeFile(
       path.join(__dirname, '..', 'model', 'users.json'),
@@ -30,4 +30,7 @@ const handleNewUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+  return null;
 };
+
+export default handleNewUser;

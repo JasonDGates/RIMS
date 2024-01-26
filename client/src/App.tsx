@@ -1,11 +1,13 @@
 import './App.css'
-import ProductForm from './utils/ProductForm'
+import Authentication from './components/Authentication';
+// import ProductForm from './utils/ProductForm'
 
 function App() {
 
   return (
     <>
-      <ProductForm />
+    <Authentication />
+      {/* <ProductForm /> */}
     </>
   )
 }
