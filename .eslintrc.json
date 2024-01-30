@@ -20,5 +20,11 @@
     },
     "rules": {
       // Your custom rules here
+      "import/extensions": ["error", "ignorePackages", {
+        "js": "always",
+        "jsx": "always",
+        "ts": "never",
+        "tsx": "never"
+      }]
     }
   }
