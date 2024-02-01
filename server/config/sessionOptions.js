@@ -1,6 +1,6 @@
 const sessionOptions = {
   secret: 'jason the dev',
-  saveUnitialized: false,
+  saveUninitialized: false,
   resave: false,
   cookie: {
     maxAge: 60000 * 60,

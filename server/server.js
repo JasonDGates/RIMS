@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import passport from 'passport';
 
 import corsOptions from './config/corsOptions.js';
 import sessionOptions from './config/sessionOptions.js';
@@ -15,6 +16,9 @@ const { PORT } = process.env;
 app.use(cors(corsOptions));
 app.use(cookieParser('helloworld'));
 app.use(session(sessionOptions));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(routes);
 
