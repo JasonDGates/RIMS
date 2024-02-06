@@ -19,7 +19,7 @@ const productsSchema = new Schema({
     type: String,
     required: true,
   },
-  iamges: {
+  images: {
     type: [String],
     required: true,
   },
