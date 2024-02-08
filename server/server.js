@@ -18,7 +18,9 @@ const app = express();
 const { PORT } = process.env;
 
 app.use(cors(corsOptions));
+app.use(express.json());
 app.use(cookieParser('helloworld'));
+// Session options are in config folder
 app.use(session(sessionOptions));
 
 app.use(passport.initialize());
