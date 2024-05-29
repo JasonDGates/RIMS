@@ -1,4 +1,5 @@
 # RIMS
+
 Remote Inventory Management System
 
 Technologies Used:
@@ -10,3 +11,6 @@ Linter: AirBNB
 Authentication: Passport
 Database: MongoDB / Mongoose
 Routing: React Router
+
+cd server npm run start:dev
+cd client npm run dev
