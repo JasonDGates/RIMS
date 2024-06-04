@@ -1,6 +1,6 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
-import { findUserByEmail } from "../services/userServices.js";
+import { findUserByEmail, findUserById } from "../services/userServices.js";
 
 passport.use(
   // This validates that the user actually exists and that the password is correct
@@ -14,8 +14,12 @@ passport.use(
           return done(null, false, { message: "Incorrect Email." });
         }
 
-        const isValidPassword = await user.isValidPassword(password);
-        if (!isValidPassword) {
+        const isValidPassword = () => {
+          if (user.password === password) return true;
+          return false;
+        };
+
+        if (!isValidPassword()) {
           return done(null, false, { message: "Incorrect Password." });
         }
 
@@ -30,7 +34,8 @@ passport.use(
 // Serialize user into the sessions
 passport.serializeUser((user, done) => {
   console.log("Serialized");
-  done(null, user.id);
+  console.log(user.id);
+  done(null, user._id);
 });
 
 // Deserialize user from the sessions

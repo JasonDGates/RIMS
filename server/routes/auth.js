@@ -4,6 +4,8 @@ import "../strategies/localStrategy.js";
 
 const router = Router();
 
-router.post("/auth", passport.authenticate("local"), (req, res) => {});
+router.post("/auth", passport.authenticate("local"), (req, res) => {
+  res.sendStatus(200);
+});
 
 export default router;
