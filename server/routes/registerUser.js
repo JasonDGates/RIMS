@@ -1,16 +1,14 @@
-import { Router } from 'express';
-import Users from '../model/Users.js';
+import { Router } from "express";
+import Users from "../model/Users.js";
+import { hashPassword } from "../utils/helpers.js";
 
 const router = Router();
 
-router.post('/registerUser', async (req, res) => {
-
+router.post("/registerUser", async (req, res) => {
   console.log(req.body);
   try {
     // Extract user data from request body
-    const {
-      firstName, lastName, role, emailAddress, password,
-    } = req.body;
+    const { firstName, lastName, role, emailAddress, password } = req.body;
 
     // Create a new user instance
     const newUser = new Users({
@@ -18,7 +16,7 @@ router.post('/registerUser', async (req, res) => {
       lastName,
       role,
       emailAddress,
-      password,
+      password: hashPassword(password),
     });
 
     // Save the new user to the database
