@@ -2,6 +2,8 @@
 
 Remote Inventory Management System
 
+Kanban Board: https://trello.com/b/iMkG8QKI/rims-mvp
+
 Technologies Used:
 Javascript / Typescript
 Backend: Node.js / Express
