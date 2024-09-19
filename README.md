@@ -17,8 +17,8 @@ Routing: React Router
 cd server npm run start:dev
 cd client npm run dev
 
-Folder / File Structure:
-
+## Monorepo Folder / File Structure:
+```plaintext
 /monorepo
 │
 ├── /frontend             # React front-end application
