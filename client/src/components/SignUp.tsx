@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import GoogleIcon from "../assets/Google__G__logo.svg";
 import FacebookIcon from "../assets/Facebook_icon_2013.svg";
 import ReactSVG from "../assets/react.svg";
@@ -12,13 +12,7 @@ const SignUpForm: React.FC = () => {
     confirmPassword: "",
   });
 
-  const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [errors, setErrors] = useState({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,7 +21,47 @@ const SignUpForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
+
+    const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const newErrors: Record<string, string> = {};
+
+    if (formData.firstName === "") {
+      newErrors.firstName = "Field cannot be blank";
+    } else {
+      delete newErrors.firstName;
+    }
+
+    if (formData.lastName === "") {
+      newErrors.lastName = "Field cannot be blank";
+    } else {
+      delete newErrors.lastName;
+    }
+
+    if (!emailValidator.test(formData.email)) {
+      newErrors.email = "Invalid Email Address";
+    } else {
+      delete newErrors.email;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.password = "Passwords do not match";
+    } else {
+      delete newErrors.password;
+    }
+
+    if (formData.password.length === 0) {
+      newErrors.password = "Field cannot be blank";
+    } else {
+      delete newErrors.password;
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    console.log("Form submitted successfully");
   };
 
   return (
@@ -46,9 +80,12 @@ const SignUpForm: React.FC = () => {
             value={formData.firstName}
             onChange={handleInputChange}
             placeholder="First Name"
+            onFocus={() => setErrors((prev) => ({ ...prev, firstName: "" }))} // Clear error on focus
             className="w-full p-2 border border-gray-300 rounded"
           />
-          <p className="text-red-500 text-xs italic h-4">{errors.firstName}</p>
+          <p className="text-red-500 text-xs h-4 font-bold">
+            {errors.firstName || ""}
+          </p>
         </div>
         <div className="md:w-1/2 mt-4 md:mt-0">
           <input
@@ -57,22 +94,27 @@ const SignUpForm: React.FC = () => {
             value={formData.lastName}
             onChange={handleInputChange}
             placeholder="Last Name"
+            onFocus={() => setErrors((prev) => ({ ...prev, lastName: "" }))}
             className="w-full p-2 border border-gray-300 rounded"
           />
-          <p className="text-red-500 text-xs italic h-4">{errors.lastName}</p>
+          <p className="text-red-500 text-xs font-bold h-4">
+            {errors.lastName || ""}
+          </p>
         </div>
       </div>
       <div className="mb-4">
         <input
-          type="email"
           name="email"
           value={formData.email}
           onChange={handleInputChange}
           placeholder="Email"
+          onFocus={() => setErrors((prev) => ({ ...prev, email: "" }))}
           className="w-full p-2 border border-gray-300 rounded"
         />
 
-        <p className="text-red-500 text-xs italic h-4">{errors.email}</p>
+        <p className="text-red-500 text-xs font-bold h-4">
+          {errors.email || ""}
+        </p>
       </div>
       <div className="mb-4">
         <input
@@ -81,6 +123,7 @@ const SignUpForm: React.FC = () => {
           value={formData.password}
           onChange={handleInputChange}
           placeholder="Password"
+          onFocus={() => setErrors((prev) => ({ ...prev, password: "" }))}
           className="w-full p-2 border border-gray-300 rounded"
         />
       </div>
@@ -91,17 +134,26 @@ const SignUpForm: React.FC = () => {
           value={formData.confirmPassword}
           onChange={handleInputChange}
           placeholder="Verify Password"
+          onFocus={() => setErrors((prev) => ({ ...prev, password: "" }))}
           className="w-full p-2 border border-gray-300 rounded"
         />
-        {errors.confirmPassword && (
-          <h2 className="text-red-600 text-sm">{errors.confirmPassword}</h2>
-        )}
+        <p className="text-red-500 text-xs font-bold h-4">
+          {errors.password || ""}
+        </p>
       </div>
       <div className="mb-4">
         <div className="w-full h-2 bg-gray-300 rounded">
           {/* Implement password strength slider logic */}
           <div className="h-full bg-green-500 rounded"></div>
         </div>
+      </div>
+      <div className="mb-4">
+        <button
+          type="submit"
+          className="w-full py-2 px-4 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Sign Up
+        </button>
       </div>
       <div className="flex items-center my-6">
         <div className="flex-grow border-t border-gray-300"></div>
