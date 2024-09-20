@@ -2,6 +2,7 @@ import { useState } from "react";
 import GoogleIcon from "../assets/Google__G__logo.svg";
 import FacebookIcon from "../assets/Facebook_icon_2013.svg";
 import ReactSVG from "../assets/react.svg";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
 const SignUpForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -52,8 +53,6 @@ const SignUpForm: React.FC = () => {
 
     if (formData.password.length === 0) {
       newErrors.password = "Field cannot be blank";
-    } else {
-      delete newErrors.password;
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -84,7 +83,12 @@ const SignUpForm: React.FC = () => {
             className="w-full p-2 border border-gray-300 rounded"
           />
           <p className="text-red-500 text-xs h-4 font-bold">
-            {errors.firstName || ""}
+            {errors.firstName && (
+              <>
+                <ErrorOutlineIcon />
+                {errors.firstName}
+              </>
+            )}
           </p>
         </div>
         <div className="md:w-1/2 mt-4 md:mt-0">
