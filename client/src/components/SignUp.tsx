@@ -4,6 +4,13 @@ import FacebookIcon from "../assets/Facebook_icon_2013.svg";
 import ReactSVG from "../assets/react.svg";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 
+interface IErrors {
+  firstName?: String;
+  lastName?: String;
+  password?: String;
+  email?: String;
+}
+
 const SignUpForm: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -13,7 +20,12 @@ const SignUpForm: React.FC = () => {
     confirmPassword: "",
   });
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<IErrors>({
+    firstName: "",
+    lastName: "",
+    password: "",
+    email: "",
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,7 +37,7 @@ const SignUpForm: React.FC = () => {
 
     const emailValidator = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const newErrors: Record<string, string> = {};
+    const newErrors: IErrors = {};
 
     if (formData.firstName === "") {
       newErrors.firstName = "Field cannot be blank";
