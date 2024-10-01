@@ -3,6 +3,7 @@ import GoogleIcon from "../assets/Google__G__logo.svg";
 import FacebookIcon from "../assets/Facebook_icon_2013.svg";
 import ReactSVG from "../assets/react.svg";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import PasswordStrength from "./PasswordStrength";
 
 interface IErrors {
   firstName?: String;
@@ -94,10 +95,10 @@ const SignUpForm: React.FC = () => {
             onFocus={() => setErrors((prev) => ({ ...prev, firstName: "" }))} // Clear error on focus
             className="w-full p-2 border border-gray-300 rounded"
           />
-          <p className="text-red-500 text-xs h-4 font-bold">
+          <p className="text-red-500 text-xs h-4 font-bold flex items-center leading-none">
             {errors.firstName && (
               <>
-                <ErrorOutlineIcon />
+                <ErrorOutlineIcon fontSize="inherit" />
                 {errors.firstName}
               </>
             )}
@@ -132,6 +133,7 @@ const SignUpForm: React.FC = () => {
           {errors.email || ""}
         </p>
       </div>
+      <PasswordStrength password={formData.password} />
       <div className="mb-4">
         <input
           type="password"
@@ -156,12 +158,6 @@ const SignUpForm: React.FC = () => {
         <p className="text-red-500 text-xs font-bold h-4">
           {errors.password || ""}
         </p>
-      </div>
-      <div className="mb-4">
-        <div className="w-full h-2 bg-gray-300 rounded">
-          {/* Implement password strength slider logic */}
-          <div className="h-full bg-green-500 rounded"></div>
-        </div>
       </div>
       <div className="mb-4">
         <button
