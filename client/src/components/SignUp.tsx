@@ -12,7 +12,7 @@ interface IErrors {
   email?: String;
 }
 
-const SignUpForm: React.FC = () => {
+const SignUpForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

@@ -3,7 +3,7 @@ interface PasswordStrengthProps {
 }
 
 const PasswordStrength = ({ password }: PasswordStrengthProps) => {
-  const calculateStrength = (password: string) => {
+  const calculateStrength = (password: string): number => {
     let strength = 0;
     if (password.length >= 8) strength += 1;
     if (/[A-Z]/.test(password)) strength += 1;
@@ -12,7 +12,13 @@ const PasswordStrength = ({ password }: PasswordStrengthProps) => {
     return strength;
   };
 
-  const getStrengthLabel = (strength: number) => {
+  interface StrengthLabel {
+    label: string;
+    color: string;
+    percentage: string;
+  }
+
+  const getStrengthLabel = (strength: number): StrengthLabel => {
     switch (strength) {
       case 1:
         return { label: "Weak", color: "bg-red-500", percentage: "25%" };
