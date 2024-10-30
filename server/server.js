@@ -9,9 +9,7 @@ import corsOptions from "./config/corsOptions.js";
 import sessionOptions from "./config/sessionOptions.js";
 import "dotenv/config";
 import routes from "./routes/index.js";
-import connectDB from "./config/dbConnection.js";
-
-connectDB();
+import { pool } from "./config/dbConnection.js";
 
 const app = express();
 
@@ -20,7 +18,7 @@ const { PORT } = process.env;
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser("helloworld"));
-// Session options are in config folder
+
 app.use(session(sessionOptions));
 
 app.use(passport.initialize());
@@ -34,9 +32,14 @@ app.get("/test", (req, res) => {
   res.status(201).send("Hello World");
 });
 
-mongoose.connection.once("open", () => {
-  console.log("Connected to MongoDB");
-  app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-  });
+
+pool.connect((err) => {
+  if (err) {
+    console.error("Failed to connect to PostgreSQL", err);
+  } else {
+    console.log("Connected to PostgreSQL");
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  }
 });
