@@ -26,7 +26,6 @@ const Registration = () => {
 
     return (
         <div className="w-full max-w-lg">
-            <h1 className="text-2xl font-bold text-center mb-6">Registration</h1>
             <form onSubmit={handleSubmit}>
                 <div className="flex flex-col md:flex-row md:gap-4">
                     <Input

@@ -23,7 +23,6 @@ const SignInForm = () => {
 
     return (
         <div className="w-full max-w-lg">
-            <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
             <form onSubmit={handleSubmit}>
                 <Input
                     label="Email"
@@ -49,10 +48,10 @@ const SignInForm = () => {
 
                 <div className="relative mt-6">
                     <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-gray-300"></div>
+                        <div className="w-full border-t border-secondary"></div>
                     </div>
                     <div className="relative flex justify-center text-sm">
-                        <span className="px-2 bg-white text-gray-500">Or continue with</span>
+                        <span className="px-2 bg-light text-secondary">Or continue with</span>
                     </div>
                 </div>
 
