@@ -1,33 +1,19 @@
-import mongoose from "mongoose";
+import { pool } from "../config/dbConnection.js";
 
-const { Schema } = mongoose;
-
-const usersSchema = new Schema(
-  {
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-    role: {
-      type: String,
-      required: true,
-    },
-    emailAddress: {
-      type: String,
-      required: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
+export const UsersModel = {
+  async getUserByEmailAddress(req, res) {
+    try {
+      
+    } catch (error) {
+      console.log(error)
+    }
   },
-  {
-    collection: "Users",
-  }
-);
 
-export default mongoose.model("User", usersSchema);
+  async createUser(name, email) {
+    const { rows } = await pool.query(
+      'INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *',
+      [name, email]
+    );
+    return rows[0];
+  },
+}
