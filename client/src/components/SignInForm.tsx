@@ -58,42 +58,36 @@ const SignInForm = () => {
                 <div className="mt-6 grid grid-cols-3 gap-3">
                     <Button
                         type="button"
-                        variant="secondary"
-                        className="flex items-center justify-center"
+                        className="flex items-center justify-center bg-white border"
                         onClick={() => {/* Handle Google login */}}
                     >
                         <img
-                            className="h-5 w-5 mr-2"
+                            className="h-5 w-5"
                             src="https://www.svgrepo.com/show/475656/google-color.svg"
                             alt="Google logo"
                         />
-                        Google
                     </Button>
                     <Button
                         type="button"
-                        variant="secondary"
-                        className="flex items-center justify-center"
+                        className="flex items-center justify-center bg-white border"
                         onClick={() => {/* Handle GitHub login */}}
                     >
                         <img
-                            className="h-5 w-5 mr-2"
+                            className="h-5 w-5"
                             src="https://www.svgrepo.com/show/512317/github-142.svg"
                             alt="GitHub logo"
                         />
-                        GitHub
                     </Button>
                     <Button
                         type="button"
-                        variant="secondary"
-                        className="flex items-center justify-center"
+                        className="flex items-center justify-center bg-white border"
                         onClick={() => {/* Handle Facebook login */}}
                     >
                         <img
-                            className="h-5 w-5 mr-2"
+                            className="h-5 w-5"
                             src="https://www.svgrepo.com/show/475647/facebook-color.svg"
                             alt="Facebook logo"
                         />
-                        Facebook
                     </Button>
                 </div>
             </form>
