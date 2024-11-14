@@ -9,7 +9,7 @@ const Authentication = () => {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* Left section - visible only on md and larger screens */}
-      <div className="hidden md:flex md:w-2/3 bg-gradient-to-br from-blue-500 to-purple-600">
+      <div className="hidden md:flex md:w-2/3 bg-gradient-to-br from-secondary to-dark">
         <div className="flex flex-col justify-center px-12 text-white">
           <h1 className="text-4xl font-bold mb-6">Welcome to Our Platform</h1>
           <p className="text-xl mb-4">
