@@ -1,6 +1,6 @@
 import { pool } from "../config/dbConnection.js";
 
-export const UsersModel = {
+const UsersModel = {
   async getUserByEmailAddress(req, res) {
     try {
       
@@ -17,3 +17,5 @@ export const UsersModel = {
     return rows[0];
   },
 }
+
+export default UsersModel;
